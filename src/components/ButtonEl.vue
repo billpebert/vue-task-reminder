@@ -28,6 +28,7 @@ defineProps({
 	text-decoration: none;
 	font-size: 16px;
 	font-family: inherit;
+	font-weight: 600;
 }
 
 .btn-black {

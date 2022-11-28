@@ -1,13 +1,15 @@
 <script setup>
 import HeaderSection from "./components/HeaderSection.vue";
 import ButtonEl from "./components/ButtonEl.vue";
+import TasksElVue from "./components/TasksEl.vue";
 </script>
 
 <template>
-	<div class="container">
+	<div class="container-wrapper">
 		<HeaderSection title="Task Tracker">
 			<ButtonEl title="Add" className="btn-success" />
 		</HeaderSection>
+		<TasksElVue @toggle-reminder="toggleReminder" @delete-task="deleteTask" :tasks="tasks" />
 	</div>
 </template>
 
@@ -17,6 +19,16 @@ export default {
 		return {
 			tasks: [],
 		};
+	},
+
+	methods: {
+		deleteTask(id) {
+			this.tasks = this.tasks.filter((task) => task.id !== id);
+		},
+		toggleReminder(id) {
+			const markTask = this.tasks.map((task) => (task.id === id ? { ...task, reminder: !task.reminder } : task));
+			this.tasks = markTask;
+		},
 	},
 
 	created() {
@@ -45,19 +57,13 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,300&display=swap");
-
 * {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
 }
 
-body {
-	font-family: "Poppins", sans-serif;
-}
-
-.container {
+.container-wrapper {
 	max-width: 500px;
 	width: 100%;
 	margin: 30px auto;
