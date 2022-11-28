@@ -2,6 +2,7 @@
 import HeaderSection from "./components/HeaderSection.vue";
 import ButtonEl from "./components/ButtonEl.vue";
 import TasksElVue from "./components/TasksEl.vue";
+import AddTaskVue from "./components/AddTask.vue";
 </script>
 
 <template>
@@ -9,6 +10,7 @@ import TasksElVue from "./components/TasksEl.vue";
 		<HeaderSection title="Task Tracker">
 			<ButtonEl title="Add" className="btn-success" />
 		</HeaderSection>
+		<AddTaskVue @add-task="addTask" />
 		<TasksElVue @toggle-reminder="toggleReminder" @delete-task="deleteTask" :tasks="tasks" />
 	</div>
 </template>
@@ -22,6 +24,9 @@ export default {
 	},
 
 	methods: {
+		addTask(task) {
+			this.tasks = [...this.tasks, task];
+		},
 		deleteTask(id) {
 			this.tasks = this.tasks.filter((task) => task.id !== id);
 		},
