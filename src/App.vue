@@ -8,9 +8,15 @@ import AddTaskVue from "./components/AddTask.vue";
 <template>
 	<div class="container-wrapper">
 		<HeaderSection title="Task Tracker">
-			<ButtonEl title="Add" className="btn-success" />
+			<ButtonEl
+				:title="showAddTask ? 'Close Form' : 'Add Task'"
+				:className="showAddTask ? 'btn-black' : 'btn-success'"
+				@click="toggleForm"
+			/>
 		</HeaderSection>
-		<AddTaskVue @add-task="addTask" />
+		<div v-show="showAddTask">
+			<AddTaskVue @add-task="addTask" />
+		</div>
 		<TasksElVue @toggle-reminder="toggleReminder" @delete-task="deleteTask" :tasks="tasks" />
 	</div>
 </template>
@@ -20,6 +26,7 @@ export default {
 	data() {
 		return {
 			tasks: [],
+			showAddTask: false,
 		};
 	},
 
@@ -33,6 +40,9 @@ export default {
 		toggleReminder(id) {
 			const markTask = this.tasks.map((task) => (task.id === id ? { ...task, reminder: !task.reminder } : task));
 			this.tasks = markTask;
+		},
+		toggleForm() {
+			this.showAddTask = !this.showAddTask;
 		},
 	},
 

@@ -1,5 +1,5 @@
 <template>
-	<form @submit="onSubmit" class="flex flex-col gap-5 mb-8">
+	<form @submit="onSubmit" class="flex flex-col gap-5 pb-5 border-b-2 border-b-slate-200">
 		<div class="flex flex-col gap-2">
 			<label for="" class="text-base text-slate-600 font-medium">Task</label>
 			<input

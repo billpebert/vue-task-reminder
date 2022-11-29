@@ -40,7 +40,7 @@ defineProps({
 	color: #f8f9fa;
 }
 
-.btn-blue {
+.btn-secondary {
 	background-color: #f2e8cf;
 	color: #212529;
 }

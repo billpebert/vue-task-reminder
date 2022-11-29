@@ -9,7 +9,7 @@ defineProps({
 });
 </script>
 <template>
-	<div class="flex flex-col gap-3">
+	<div class="flex flex-col gap-3 pt-5">
 		<div v-for="task in tasks" :key="task.id">
 			<Task
 				@toggle-reminder="$emit('toggle-reminder', task.id)"
